@@ -1,0 +1,25 @@
+{
+    "name": "my-react-flow-app",
+    "build": {
+      "dockerfile": "Dockerfile"
+    },
+    "runArgs": [
+      "--init",
+      "--cap-add=SYS_PTRACE",
+      "--security-opt",
+      "seccomp=unconfined"
+    ],
+    "customizations": {
+      "vscode": {
+        "settings": {
+          "terminal.integrated.shell.linux": "/bin/bash"
+        },
+        "extensions": [
+          "dbaeumer.vscode-eslint",
+          "esbenp.prettier-vscode"
+        ]
+      }
+    },
+    "postCreateCommand": "npm --yes create vite@latest my-react-flow-app -- --template react && cd my-react-flow-app && npm install @xyflow/react && cp /workspaces/ai-react-flow/App.jsx /workspaces/ai-react-flow/my-react-flow-app/src/App.jsx",
+    "remoteUser": "node"
+  }
